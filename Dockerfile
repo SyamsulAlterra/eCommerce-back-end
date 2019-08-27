@@ -4,6 +4,6 @@ RUN mkdir -p /demo
 COPY . /demo
 RUN pip install -r /demo/requirements.txt
 WORKDIR /demo
-ENTRYPOINT {"python"}
-CMD {"app.py"}
+ENTRYPOINT ["python"]
+CMD ["app.py"]
 

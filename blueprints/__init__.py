@@ -1,5 +1,3 @@
-from blueprints.user.resources import bp_user
-from blueprints.auth.resources import bp_auth
 from flask import Flask
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
@@ -36,7 +34,8 @@ manager.add_command('db', MigrateCommand)
 #############
 # RESOURCES
 #############
-
+from blueprints.user.resources import bp_user
+from blueprints.auth.resources import bp_auth
 
 app.register_blueprint(bp_auth, url_prefix='/welcome')
 app.register_blueprint(bp_user, url_prefix='/user')
