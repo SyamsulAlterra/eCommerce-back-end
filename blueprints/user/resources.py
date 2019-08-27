@@ -111,7 +111,7 @@ class PenjualResource(Resource):
             return {'message': 'please check your input'}, 200
 
         barang_di_db = Barang.query.filter_by(
-            nama_barang=args['nama_barang'], id_pemilik=claim['id']).first()
+            nama_barang=args['nama_barang'], id_pemilik=claim['id'], deleted_status=False).first()
 
         image=''
         if args['url_image']!='':
