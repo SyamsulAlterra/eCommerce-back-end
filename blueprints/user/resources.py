@@ -62,6 +62,41 @@ class UserResources(Resource):
 
         return {'message': 'success add {total} {barang} to shopping bag'.format(total=args['qty'], barang=target_barang.nama_barang)}, 200
 
+    @jwt_required
+    def post(self):
+        claim = get_jwt_claims()
+        user_id = claim['id']
+
+        user = User.query.get(user_id)
+
+        parser = reqparse.RequestParser()
+        parser.add_argument('nama', location='json')
+        parser.add_argument('password', location='json')
+        args = parser.parse_args()
+
+        if args['nama'] != '':
+            user.nama = args['nama']
+            db.session.commit()
+
+        if args['password'] != '':
+            user.password = args['password']
+            db.session.commit()
+
+        return {'message': 'your username and password are succesfully updated'}, 200
+
+    def patch(self):
+        
+        parser = reqparse.RequestParser()
+        parser.add_argument('username', location='json')
+        parser.add_argument('email', location='json')
+        args = parser.parse_args()
+
+        user = User.query.filter_by(nama= args['username'], email=args['email']).first()
+
+        if user == None:
+            return {'message': 'your data is unregistered'}, 200
+        else:
+            return {'message': 'your password is {p}'.format(p=user.password)},200
 
 class PenjualResource(Resource):
     @jwt_required
@@ -487,7 +522,7 @@ class TransactionResource(Resource):
         return result, 200
 
 
-api.add_resource(UserResources, '/beli/<barang_id>')
+api.add_resource(UserResources, '/beli/<barang_id>', '/beli')
 api.add_resource(GetAllMerchant, '/all', '/<barang_id>')
 api.add_resource(StatusResource, '/status')
 api.add_resource(GiveRating, '/give_rating/<penjual_id>')
