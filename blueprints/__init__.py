@@ -1,3 +1,5 @@
+from blueprints.user.resources import bp_user
+from blueprints.auth.resources import bp_auth
 from flask import Flask
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
@@ -23,7 +25,7 @@ jwt = JWTManager(app)
 ######################
 # DATABASE
 ######################
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:alta123@localhost:3306/eCommerce'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:Altabatch3@databasesyamsulclub.cdbtzlgoj2dv.ap-southeast-1.rds.amazonaws.com:3306/eCommerce'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -35,8 +37,6 @@ manager.add_command('db', MigrateCommand)
 # RESOURCES
 #############
 
-from blueprints.auth.resources import bp_auth
-from blueprints.user.resources import bp_user
 
 app.register_blueprint(bp_auth, url_prefix='/welcome')
 app.register_blueprint(bp_user, url_prefix='/user')
