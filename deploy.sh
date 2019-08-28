@@ -8,8 +8,9 @@
 # source ~/.profile
 # echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USER --password-stdin
 
-sudo docker stop syamsuldocker/image_test
-sudo docker rm syamsuldocker/image_test
-sudo docker rmi syamsuldocker/image_test
-sudo docker pull syamsuldocker/image_test
-sudo docker run -d -p 8000:8000 syamsuldocker/image_test:latest
+sudo docker stop syamsuldocker/backend_automate
+sudo docker rm syamsuldocker/backend_automate
+sudo docker rmi syamsuldocker/backend_automate
+sudo docker pull syamsuldocker/backend_automate
+sudo docker stop 9e57ccefccf3
+sudo docker run -d -p 5001:8001 syamsuldocker/backend_automate:latest
