@@ -12,4 +12,4 @@ sudo docker stop syamsuldocker/image_test
 sudo docker rm syamsuldocker/image_test
 sudo docker rmi syamsuldocker/image_test
 sudo docker pull syamsuldocker/image_test
-sudo docker run -d -p 5001:5001 syamsuldocker/syamsuldocker/image_test:latest
+sudo docker run -d -p 5001:5001 syamsuldocker/image_test:latest
