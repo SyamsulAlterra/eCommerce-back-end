@@ -20,14 +20,14 @@ script:
 - sudo chmod 600 deploy_rsa
 after_script:
 - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
-- docker build -t ${DOCKER_HUB_ORG}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
-  .
+- docker build -t ${DOCKER_HUB_ORG}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} .
 - docker push ${DOCKER_HUB_ORG}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
-- docker tag ${DOCKER_HUB_ORG}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID}
-  ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest
+- docker tag ${DOCKER_HUB_ORG}/${DOCKER_IMAGE_NAME}:${TRAVIS_BUILD_ID} ${DOCKER_USERNAME}/${DOCKER_IMAGE_NAME}:latest
 - docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}" && docker push ${DOCKER_HUB_ORG}/${DOCKER_IMAGE_NAME}:latest
 - ssh-keyscan -H $SSH_IP >> ~/.ssh/known_hosts
 - ssh -v -i deploy_rsa $SSH_USER@$SSH_IP DIR=$ROOT_DIR 'bash -s' < deploy.sh
 before_install:
+- openssl aes-256-cbc -K $encrypted_2c472acb67c6_key -iv $encrypted_2c472acb67c6_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
 - openssl aes-256-cbc -K $encrypted_7ff327ea1c3d_key -iv $encrypted_7ff327ea1c3d_iv
   -in deploy_rsa.enc -out deploy_rsa -d
