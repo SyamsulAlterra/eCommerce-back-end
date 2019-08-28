@@ -1,13 +1,14 @@
 #!/bin/bash
 
-eval "$(ssh-agent -s)" &&
-ssh-add -k ~/.ssh/id_rsa &&
-cd /var/www/helloworld
-git pull
+# eval "$(ssh-agent -s)" &&
+# ssh-add -k ~/.ssh/id_rsa &&
+# cd /var/www/helloworld
+# git pull
 
-source ~/.profile
-echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USER --password-stdin
-docker stop helloworld
-docker rm helloworld
-docker rmi syamsuldocker/helloworld
-docker run -d --name helloworld -p 5000:5000 syamsuldocker/helloworld:latest
+# source ~/.profile
+# echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USER --password-stdin
+
+sudo docker stop syamsuldocker/image_test
+sudo docker rm syamsuldocker/image_test
+sudo docker rmi syamsuldocker/image_test
+sudo docker run -d -p 5001:5001 syamsuldocker/syamsuldocker/image_test:latest
