@@ -9,7 +9,7 @@ env:
   - DOCKER_IMAGE_NAME="backend_automate"
   - DOCKER_HUB_ORG="syamsuldocker"
 before_script:
-- openssl aes-256-cbc -K $encrypted_7ff327ea1c3d_key -iv $encrypted_7ff327ea1c3d_iv
+- openssl aes-256-cbc -K $encrypted_7ff327ea1c3d_key -iv $encrypted_7ff327ea1c3d_i
   -in deploy_rsa.enc -out deploy_rsa -d
 - eval "$(ssh-agent -s)"
 - chmod 600 deploy_rsa
