@@ -6,8 +6,8 @@ os:
 - linux
 env:
   global:
-  - DOCKER_IMAGE_NAME="helloworld"
-  - DOCKER_HUB_ORG="aprynur"
+  - DOCKER_IMAGE_NAME="image_test"
+  - DOCKER_HUB_ORG="syamsuldocker"
 before_script:
 - openssl aes-256-cbc -K $encrypted_2c472acb67c6_key -iv $encrypted_2c472acb67c6_iv
   -in deploy_rsa.enc -out deploy_rsa -d
