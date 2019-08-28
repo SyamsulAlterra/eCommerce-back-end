@@ -13,4 +13,4 @@ sudo docker rm syamsuldocker/backend_automate
 sudo docker rmi syamsuldocker/backend_automate
 sudo docker pull syamsuldocker/backend_automate
 sudo docker stop 9e57ccefccf3
-sudo docker run -d -p 5001:8001 syamsuldocker/backend_automate:latest
+sudo docker run -d -p 5001:5001 syamsuldocker/backend_automate:latest
