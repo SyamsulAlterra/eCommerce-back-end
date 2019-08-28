@@ -19,7 +19,7 @@ class AuthResource(Resource):
         person = User.query.filter_by(
             nama=args['nama'], password=args['password']).first()
         if person == None:
-            return {'message': 'continous integration'}, 200
+            return {'message': 'your data is unregistered'}, 200
 
         person = marshal(person, User.json_data)
         token_attribute = create_access_token(identity=person['nama'], user_claims={
