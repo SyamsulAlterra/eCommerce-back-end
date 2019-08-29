@@ -33,6 +33,3 @@ class Barang(db.Model):
         self.rating_penjual = pemilik.rating
         self.url_image=url_image
         self.deleted_status = False
-
-    def __repr__(self):
-        return self.nama_barang

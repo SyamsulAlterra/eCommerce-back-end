@@ -29,11 +29,6 @@ class AuthResource(Resource):
 
         return {'token': token_attribute}, 200
 
-    @jwt_required
-    def get(self):
-        claim = get_jwt_claims()
-        return claim, 200
-
 
 class SignUp(Resource):
     # def options(self):

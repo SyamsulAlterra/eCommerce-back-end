@@ -21,6 +21,3 @@ class Rating(db.Model):
         self.id_pembeli = id_pembeli
         self.id_penjual = id_penjual
         self.given_rating = given_rating
-
-    def __repr__(self):
-        return str(self.id_pembeli)+' '+str(self.id_penjual)

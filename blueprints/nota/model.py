@@ -33,6 +33,3 @@ class Nota(db.Model):
         barang = marshal(barang, Barang.json_data)
         self.sub_total = int(barang['harga_satuan'])*self.buy_qty
         self.status = status
-
-    def __repr__(self):
-        return 'nota'

@@ -80,3 +80,26 @@ def create_token_not_enough_saldo():
         return res_json['token']
     else:
         return token
+
+def create_token_invalid():
+    token = cache.get('test-invalid')
+    if token is None:
+        data={
+            'nama' : 'tes',
+            'password': 't'
+        }
+
+        req = call_client(request)
+        res = req.post('/welcome/login',json=data)
+
+        res_json=json.loads(res.data)
+
+        logging.warning('RESULT :%s', res_json)
+
+        assert res.status_code == 200
+
+        cache.set('test-invalid', 'zong',timeout=60)
+
+        return 'zong'
+    else:
+        return token

@@ -29,6 +29,3 @@ class User(db.Model):
         self.status_penjual = status
         self.rating = rating
         self.saldo = saldo
-
-    def __repr__(self):
-        return self.nama
