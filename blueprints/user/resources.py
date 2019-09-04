@@ -340,8 +340,6 @@ class UnpaidNota(Resource):
         unpaid_nota = Nota.query.filter_by(
             id_pembeli=user_id, status='unpaid').all()
 
-        print(user_id)
-        print(unpaid_nota)
         total = 0
         unpaid_notas=[]
         for nota in unpaid_nota:
@@ -373,7 +371,7 @@ class UnpaidNota(Resource):
 
         pembeli = User.query.get(user_id)
         if total > pembeli.saldo:
-            return {'message': 'You don\'t have enough saldo, please top up first'}, 500
+            return {'message': 'You don\'t have enough saldo, please top up first'}, 200
 
         for nota in unpaid_nota:
             pembeli.saldo -= nota.sub_total
@@ -473,13 +471,13 @@ class TopUp(Resource):
                 'your current saldo': user.saldo}, 200
 
 
-class GetAllSellers(Resource):
-    @jwt_required
-    def get(self):
-        all_seller = marshal(User.query.filter_by(
-            status_penjual=True).all(), User.json_data)
+# class GetAllSellers(Resource):
+#     @jwt_required
+#     def get(self):
+#         all_seller = marshal(User.query.filter_by(
+#             status_penjual=True).all(), User.json_data)
 
-        return all_seller, 200
+#         return all_seller, 200
 
 
 class TransactionResource(Resource):
@@ -529,5 +527,5 @@ api.add_resource(GiveRating, '/give_rating/<penjual_id>')
 api.add_resource(UnpaidNota, '/nota/all', '/nota/<barang_id>')
 api.add_resource(PenjualResource, '/myshop', '/myshop/<barang_id>')
 api.add_resource(TopUp, '/topup')
-api.add_resource(GetAllSellers, '/sellers')
+# api.add_resource(GetAllSellers, '/sellers')
 api.add_resource(TransactionResource, '/transactions','/transactions/<nota_id>')

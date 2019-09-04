@@ -1,6 +1,7 @@
 flask
 flask-restful
 pytest
+pytest-cov
 flask-sqlalchemy
 pymysql
 flask-script
